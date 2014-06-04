@@ -113,7 +113,7 @@ datetime_re_list = [ re.compile('^%s(?: %s)?$' % (date_str, time_str), re.UNICOD
 
 month_lists = [
     "jan feb mar apr may jun jul aug sep oct nov dec".split(),
-    u"янв фев мар апр май июн июл авг сен окт ноя дек".split(),  # Russian
+    u"пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ".split(),  # Russian
     ]
 month_dict = {}
 
@@ -121,7 +121,7 @@ for month_list in month_lists:
     for i, month in enumerate(month_list):
         month_dict[month] = i + 1
 
-month_dict[u'мая'] = 5  # Russian
+month_dict[u'пїЅпїЅпїЅ'] = 5  # Russian
 
 def str2date(s):
     s = s.strip().lower()
@@ -148,7 +148,7 @@ def str2time(s):
     return datetime.time(int(hh), int(mm or 0), int(ss or 0))
 
 def str2datetime(s):
-    s = s.strip().lower()
+     s = s.strip().lower().replace('t',' ')
     for datetime_re in datetime_re_list:
         match = datetime_re.match(s)
         if match is not None: break
